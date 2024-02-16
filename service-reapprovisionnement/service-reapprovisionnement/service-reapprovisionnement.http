@@ -1,0 +1,6 @@
+@service_reapprovisionnement_HostAddress = http://localhost:5230
+
+GET {{service_reapprovisionnement_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
