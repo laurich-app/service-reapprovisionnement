@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nadir\\Desktop\\Master 2\\Projet-interrop\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement.csproj": {}
+    "/app/service-reapprovisionnement/service-reapprovisionnement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nadir\\Desktop\\Master 2\\Projet-interrop\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement.csproj": {
+    "/app/service-reapprovisionnement/service-reapprovisionnement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nadir\\Desktop\\Master 2\\Projet-interrop\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement.csproj",
+        "projectUniqueName": "/app/service-reapprovisionnement/service-reapprovisionnement.csproj",
         "projectName": "service-reapprovisionnement",
-        "projectPath": "C:\\Users\\nadir\\Desktop\\Master 2\\Projet-interrop\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement.csproj",
-        "packagesPath": "C:\\Users\\nadir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nadir\\Desktop\\Master 2\\Projet-interrop\\service-reapprovisionnement\\service-reapprovisionnement\\service-reapprovisionnement\\obj\\",
+        "projectPath": "/app/service-reapprovisionnement/service-reapprovisionnement.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/app/service-reapprovisionnement/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nadir\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +43,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Consul": {
+              "target": "Package",
+              "version": "[1.7.14.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -69,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
