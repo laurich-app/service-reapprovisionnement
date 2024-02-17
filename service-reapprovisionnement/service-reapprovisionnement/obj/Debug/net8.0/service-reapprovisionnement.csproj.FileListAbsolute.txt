@@ -39,3 +39,10 @@
 /app/service-reapprovisionnement/obj/Debug/net8.0/service-reapprovisionnement.pdb
 /app/service-reapprovisionnement/obj/Debug/net8.0/service-reapprovisionnement.genruntimeconfig.cache
 /app/service-reapprovisionnement/obj/Debug/net8.0/ref/service-reapprovisionnement.dll
+/test-build/appsettings.Development.json
+/test-build/appsettings.json
+/test-build/service-reapprovisionnement
+/test-build/service-reapprovisionnement.deps.json
+/test-build/service-reapprovisionnement.runtimeconfig.json
+/test-build/service-reapprovisionnement.dll
+/test-build/service-reapprovisionnement.pdb

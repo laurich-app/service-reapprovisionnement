@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>service_reapprovisionnement</RootNamespace>
+    <StartupObject>service_reapprovisionnement.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
