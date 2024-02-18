@@ -46,3 +46,4 @@
 /test-build/service-reapprovisionnement.runtimeconfig.json
 /test-build/service-reapprovisionnement.dll
 /test-build/service-reapprovisionnement.pdb
+/app/service-reapprovisionnement/bin/Debug/net8.0/Microsoft.Extensions.Options.dll

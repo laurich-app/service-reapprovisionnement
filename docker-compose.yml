@@ -49,3 +49,12 @@ services:
     depends_on:
       - serveur-conf
       - discovery
+
+  service-passerelle:
+    image: ghcr.io/laurich-app/service-passerelle:latest
+    ports:
+      - 8080:8080
+    environment:
+      - CLIENT_URL=http://client
+      - CONSUL_HOST=discovery
+      - CONSUL_PORT=8500

@@ -23,7 +23,9 @@ using Consul;
 using Securities;
 using Microsoft.AspNetCore.Http;
 using Securities;
-
+using services;
+using Dtos;
+using Extensions;
 
 namespace service_reapprovisionnement
 {
@@ -40,6 +42,9 @@ namespace service_reapprovisionnement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddOptions();
+            services.Configure<ConsulOptions>(Configuration);
+            services.AddTransient<ConsulService>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddScoped<ClaimsHelper>(); // Enregistrer ClaimsHelper comme un service Scoped
@@ -106,6 +111,8 @@ namespace service_reapprovisionnement
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.ConsulRegister();
 
             app.UseEndpoints(endpoints =>
             {
