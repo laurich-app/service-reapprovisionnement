@@ -950,19 +950,19 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "/Users/soumiadelmi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/app/service-reapprovisionnement/service-reapprovisionnement.csproj",
+      "projectUniqueName": "/Users/soumiadelmi/Library/CloudStorage/OneDrive-Personnel/Documents/M2 MIAGE/S2/Interop/service-reapprovisionnement/service-reapprovisionnement/service-reapprovisionnement/service-reapprovisionnement.csproj",
       "projectName": "service-reapprovisionnement",
-      "projectPath": "/app/service-reapprovisionnement/service-reapprovisionnement.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/app/service-reapprovisionnement/obj/",
+      "projectPath": "/Users/soumiadelmi/Library/CloudStorage/OneDrive-Personnel/Documents/M2 MIAGE/S2/Interop/service-reapprovisionnement/service-reapprovisionnement/service-reapprovisionnement/service-reapprovisionnement.csproj",
+      "packagesPath": "/Users/soumiadelmi/.nuget/packages/",
+      "outputPath": "/Users/soumiadelmi/Library/CloudStorage/OneDrive-Personnel/Documents/M2 MIAGE/S2/Interop/service-reapprovisionnement/service-reapprovisionnement/service-reapprovisionnement/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "/Users/soumiadelmi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -980,11 +980,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1031,7 +1026,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/soumiadelmi/.dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
