@@ -13,6 +13,8 @@ services:
     environment:
       - CONSUL_HOST=discovery
       - CONSUL_PORT=8500
+      - MONGO_URL=mongodb://user:pswd@mongo-reappro:27017/
+      - MONGO_DATABASE=reappro
 
   discovery:
     image: consul:1.15

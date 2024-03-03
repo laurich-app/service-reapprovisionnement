@@ -41,6 +41,8 @@ namespace service_reapprovisionnement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<DatabaseService>();
+            services.AddSingleton<WeatherService>();
             services.AddControllers();
             services.AddOptions();
             services.Configure<ConsulOptions>(Configuration);

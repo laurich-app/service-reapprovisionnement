@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
 using System.Security.Claims;
 using Securities;
+using services;
 
 namespace service_reapprovisionnement.Controllers
 {
@@ -20,6 +21,8 @@ namespace service_reapprovisionnement.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ClaimsHelper _claimsHelper;
 
+        private readonly WeatherService _weatherService;
+
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -27,11 +30,12 @@ namespace service_reapprovisionnement.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, WeatherService weatherService)
         {
             _logger = logger;
             _httpContextAccessor = httpContextAccessor;
             _claimsHelper = claimsHelper;
+            _weatherService = weatherService;
         }
 
         [HttpGet]
@@ -49,16 +53,16 @@ namespace service_reapprovisionnement.Controllers
 
         [HttpGet("test")]
         [AllowAnonymous]
-        public IEnumerable<WeatherForecast> GetTest()
+        public async Task<List<WeatherForecast>> GetTest()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            await _weatherService.CreateAsync(new WeatherForecast
             {
-                Date = DateTime.Now.AddDays(index),
+                Date = DateTime.Now.AddDays(1),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            });
+            return await _weatherService.GetAsync();
         }
 
         [HttpGet("test2")]

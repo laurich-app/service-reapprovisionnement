@@ -47,3 +47,16 @@
 /test-build/service-reapprovisionnement.dll
 /test-build/service-reapprovisionnement.pdb
 /app/service-reapprovisionnement/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/AWSSDK.Core.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/AWSSDK.SecurityToken.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/DnsClient.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/MongoDB.Bson.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/MongoDB.Driver.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/MongoDB.Driver.Core.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/MongoDB.Libmongocrypt.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/SharpCompress.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/Snappier.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/ZstdSharp.dll
+/app/service-reapprovisionnement/bin/Debug/net8.0/runtimes/linux/native/libmongocrypt.so
+/app/service-reapprovisionnement/bin/Debug/net8.0/runtimes/osx/native/libmongocrypt.dylib
+/app/service-reapprovisionnement/bin/Debug/net8.0/runtimes/win/native/mongocrypt.dll
