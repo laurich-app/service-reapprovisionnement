@@ -14,7 +14,5 @@ public interface IFournisseurRepository
 
     void Update(int id, Fournisseur entity);
 
-    long GetTotalFournisseurs();
-
-    long GetFilteredFournisseurs(FilterDefinition<Fournisseur> filter)
+    int GetTotalFournisseurs();
 }

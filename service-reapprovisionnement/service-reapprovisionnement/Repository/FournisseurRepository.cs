@@ -45,15 +45,9 @@ public class FournisseurRepository : IFournisseurRepository
         this.fournisseur.ReplaceOne(cmd => cmd.idFournisseur == id, entity);
     }
 
-    public long GetTotalFournisseurs()
+    public int GetTotalFournisseurs()
     {
         // Compter tous les documents dans la collection
-        return this.fournisseur.CountDocuments(new BsonDocument());
-    }
-
-    public long GetFilteredFournisseurs(FilterDefinition<Fournisseur> filter)
-    {
-        // Compter les documents qui correspondent à un filtre spécifique
-        return this.fournisseur.CountDocuments(filter);
+        return Convert.ToInt32(this.fournisseur.CountDocuments(new BsonDocument()));
     }
 }

@@ -8,6 +8,10 @@ public class FournisseurService : IFounisseurService
 {
     private readonly IFournisseurRepository fournisseurRepository;
 
+    public FournisseurService(FournisseurRepository fournisseurRepository)
+    {
+        this.fournisseurRepository = fournisseurRepository;
+    }
 
     public Pagination<Fournisseur> GetAll(int page, int pageSize)
     {

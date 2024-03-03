@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Reapprovisionnement.Models;
 using services;
+using System.Security.Claims;
+using Securities;
+using Dtos;
 
 namespace service_reapprovisionnement.Controllers;
 [Route("api/fournisseurs")]
@@ -56,7 +59,7 @@ public class FournisseurController: ControllerBase
         // ...
 
         // Retourne la réponse avec le format spécifié
-        return CreatedAtAction(nameof(GetFournisseur), new { id = fournisseur.idFournissuer }, fournisseur);
+        return CreatedAtAction(nameof(GetFournisseur), new { id = fournisseur.idFournisseur }, fournisseur);
     }
     
     // PUT /api/fournisseurs/{id}
