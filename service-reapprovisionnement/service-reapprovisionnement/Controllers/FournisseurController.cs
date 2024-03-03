@@ -1,28 +1,40 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Reapprovisionnement.Models;
+using services;
 
 namespace service_reapprovisionnement.Controllers;
 [Route("api/fournisseurs")]
 [ApiController]
 //[Authorize(Roles = "ROLE_GESTIONNAIRE")]
 //Console.WriteLine(this._claimsHelper.IsGestionaire((ClaimsIdentity)principal.Identity));
-
+[AllowAnonymous]
 public class FournisseurController: ControllerBase
 {
+    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ClaimsHelper _claimsHelper;
+
+    private readonly FournisseurService _fournisseurService;
+
+    private readonly ILogger<FournisseurController> _logger;
+
+    public FournisseurController(ILogger<FournisseurController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, FournisseurService fournisseurService)
+    {
+        _logger = logger;
+        _httpContextAccessor = httpContextAccessor;
+        _claimsHelper = claimsHelper;
+        _fournisseurService = fournisseurService;
+    }
+
     // GET /api/fournisseurs
     [HttpGet]
     public IActionResult GetFournisseurs([FromQuery] int page = 1, [FromQuery] int limit = 10)
     {
         // Logique pour récupérer la liste des fournisseurs paginés
-        // ...
+        Pagination<Fournisseur> p = this._fournisseurService.GetAll(page, limit);
 
         // Retourne la réponse avec le format spécifié
-        return Ok(new
-        {
-            data = new List<Fournisseur>(), 
-            pagination = new { nbItem = 0, limit, page }
-        });
+        return Ok(p);
     }
     
     // GET /api/fournisseurs/{id}

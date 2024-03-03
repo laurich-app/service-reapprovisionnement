@@ -26,6 +26,7 @@ using Securities;
 using services;
 using Dtos;
 using Extensions;
+using service_reapprovisionnement.Repository;
 
 namespace service_reapprovisionnement
 {
@@ -43,6 +44,8 @@ namespace service_reapprovisionnement
         {
             services.AddSingleton<DatabaseService>();
             services.AddSingleton<WeatherService>();
+            services.AddSingleton<FournisseurRepository>();
+            services.AddSingleton<FournisseurService>();
             services.AddControllers();
             services.AddOptions();
             services.Configure<ConsulOptions>(Configuration);

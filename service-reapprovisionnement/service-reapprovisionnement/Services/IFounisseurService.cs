@@ -1,10 +1,11 @@
+using Dtos;
 using Reapprovisionnement.Models;
 
 namespace services;
 
 public interface IFounisseurService
 {
-    List<Fournisseur> GetAll();
+    Pagination<Fournisseur> GetAll(int page, int pageSize);
 
     Fournisseur GetById(int id);
 

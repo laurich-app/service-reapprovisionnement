@@ -4,7 +4,7 @@ namespace service_reapprovisionnement.Repository;
 
 public interface IFournisseurRepository
 {
-    List<Fournisseur> GetAll();
+    List<Fournisseur> GetAll(int page, int pageSize);
 
     Fournisseur GetById(int id);
 
@@ -13,4 +13,8 @@ public interface IFournisseurRepository
     void Delete(int id);
 
     void Update(int id, Fournisseur entity);
+
+    long GetTotalFournisseurs();
+
+    long GetFilteredFournisseurs(FilterDefinition<Fournisseur> filter)
 }
