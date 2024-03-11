@@ -1,4 +1,23 @@
+POST http://localhost:8081/auth/connexion
+Content-Type: application/json
+
+{
+  "email": "root@root.com",
+  "motDePasse": "root"
+}
+
+> {% 
+client.test("Request executed successfuly", function () {
+    client.assert(response.status === 200, "Reponse status is not 200")
+})
+ if(response.status === 200) {
+     client.global.set("accessToken", response.headers.valueOf("Authorization").slice(7))
+ }
+ %}
+
+###
 GET http://localhost:5200/fournisseurs
+Authorization: Bearer {{accessToken}}
 
 > {% 
  client.test("Récupérer tous les fournisseurs", function() {
@@ -11,6 +30,7 @@ GET http://localhost:5200/fournisseurs
 
 POST http://localhost:5200/fournisseurs
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "email": "fournisseur@gmail.com",
@@ -27,6 +47,7 @@ Content-Type: application/json
 ###
 POST http://localhost:5200/fournisseurs
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "email": "fournisseur@gmail.com",
@@ -48,6 +69,7 @@ Content-Type: application/json
 ###
 POST http://localhost:5200/fournisseurs
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "email": "fournisseur@gmail.com"
@@ -63,6 +85,7 @@ Content-Type: application/json
 ###
 POST http://localhost:5200/fournisseurs
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "raison_sociale": "Fournisseur de bruxelle"
@@ -77,6 +100,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5200/fournisseurs
+Authorization: Bearer {{accessToken}}
 
 > {%
     client.test("Récupérer tous les fournisseurs", function() {
@@ -87,6 +111,7 @@ GET http://localhost:5200/fournisseurs
 
 ###
 GET http://localhost:5200/fournisseurs/{{id_fournisseur}}
+Authorization: Bearer {{accessToken}}
 
 > {%
     client.test("Récupérer un fournisseur", function() {
@@ -98,6 +123,7 @@ GET http://localhost:5200/fournisseurs/{{id_fournisseur}}
 ###
 PUT http://localhost:5200/fournisseurs/{{id_fournisseur}}
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "email": "fournisseur2@gmail.com"
@@ -113,6 +139,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:5200/fournisseurs/{{id_fournisseur}}
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "produits": []
@@ -128,6 +155,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:5200/fournisseurs/{{id_fournisseur}}
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 > {%
     client.test("Fournisseur supprimé", function() {
@@ -137,6 +165,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:5200/fournisseurs/{{id_fournisseur}}
+Authorization: Bearer {{accessToken}}
 
 > {%
     client.test("Récupérer un fournisseur", function() {
@@ -148,6 +177,7 @@ GET http://localhost:5200/fournisseurs/{{id_fournisseur}}
 ###
 POST http://localhost:5200/fournisseurs
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "email": "fournisseur@gmail.com",
@@ -170,6 +200,7 @@ Content-Type: application/json
 ###
 POST http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "prix_unitaire_fournisseur": 15,
@@ -185,6 +216,7 @@ Content-Type: application/json
 ###
 POST http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "prix_unitaire_fournisseur": 15,
@@ -200,6 +232,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits/2
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "prix_unitaire_fournisseur": 12
@@ -215,6 +248,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits/2
 Content-Type: application/json
+Authorization: Bearer {{accessToken}}
 
 {
   "prix_unitaire_fournisseur": 12,

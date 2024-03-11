@@ -2,18 +2,18 @@ namespace Reapprovisionnement.Models;
 
 public class ProduitDetail
 {
-    public double PrixUnitaireFournisseur { get; set; }
-    public int IdProduitCatalogue { get; set; }
-    public string Libelle { get; set; }
-    public string Description { get; set; }
-    public List<string> Couleurs { get; set; }
-    public string Sexe { get; set; }
-    public string Taille { get; set; }
-    public string ImageUrl { get; set; }
+    public double prix_unitaire_fournisseur { get; set; }
+    public int id_produit_catalogue { get; set; }
+    public string libelle { get; set; }
+    public string description { get; set; }
+    public List<string> couleurs { get; set; }
+    public string sexe { get; set; }
+    public string taille { get; set; }
+    public string image_url { get; set; }
 
     public ProduitDetail()
     {
         // Initialise la liste dans le constructeur
-        Couleurs = new List<string>();
+        couleurs = new List<string>();
     }
 }

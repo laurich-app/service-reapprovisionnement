@@ -22,6 +22,12 @@ public class FournisseurController: ControllerBase
 
     private readonly ILogger<FournisseurController> _logger;
 
+    private Boolean Authentifier()
+    {
+        var principal = _httpContextAccessor.HttpContext.User;
+        return this._claimsHelper.IsGestionaire((ClaimsIdentity)principal.Identity);
+    }
+
     public FournisseurController(ILogger<FournisseurController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, FournisseurService fournisseurService)
     {
         _logger = logger;
@@ -34,6 +40,9 @@ public class FournisseurController: ControllerBase
     [HttpGet]
     public IActionResult GetFournisseurs([FromQuery] int page = 1, [FromQuery] int limit = 10)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
+        
         // Logique pour récupérer la liste des fournisseurs paginés
         Pagination<Fournisseur> p = this._fournisseurService.GetAll(page, limit);
 
@@ -45,6 +54,8 @@ public class FournisseurController: ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetFournisseur(string id)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         // Logique pour récupérer un fournisseur par son ID
         try
         {
@@ -61,6 +72,8 @@ public class FournisseurController: ControllerBase
     [HttpPost]
     public IActionResult AddFournisseur([FromBody] Fournisseur fournisseur)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         // Logique pour ajouter un fournisseur
         try
         {
@@ -78,6 +91,8 @@ public class FournisseurController: ControllerBase
     [HttpPut("{id}")]
     public IActionResult UpdateFournisseur(string id, [FromBody] FournisseurUpdate fournisseur)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         // Logique pour mettre à jour un fournisseur par son ID
         try
         {
@@ -94,6 +109,8 @@ public class FournisseurController: ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeleteFournisseur(string id)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         // Logique pour supprimer un fournisseur par son ID
         this._fournisseurService.Delete(id);
 
@@ -105,6 +122,8 @@ public class FournisseurController: ControllerBase
     [HttpPost("{id}/produits")]
     public IActionResult AddProduitToFournisseur([FromRoute] string id, [FromBody] Produit produit)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         try
         {
             // Logique pour ajouter un produit à un fournisseur par son ID
@@ -127,6 +146,8 @@ public class FournisseurController: ControllerBase
     [HttpPut("{id}/produits/{catalogueId}")]
     public IActionResult UpdProduitToFournisseur([FromRoute] string id, int catalogueId, [FromBody] ProduitUpd produit)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         try
         {
             // Logique pour ajouter un produit à un fournisseur par son ID
@@ -149,6 +170,8 @@ public class FournisseurController: ControllerBase
     [HttpDelete("{id}/produits/{catalogueId}")]
     public IActionResult DeleteProduitToFournisseur([FromRoute] string id, int catalogueId)
     {
+        if (!this.Authentifier())
+            return Unauthorized();
         // Logique pour ajouter un produit à un fournisseur par son ID
         try
         {

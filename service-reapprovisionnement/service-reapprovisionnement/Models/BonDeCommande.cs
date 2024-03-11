@@ -1,12 +1,15 @@
 using service_reapprovisionnement.Enum;
-
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 namespace Reapprovisionnement.Models;
 
 public class BonDeCommande
 {
-    public int idBonDeCommande { get; set; }
-    public string DateCreation { get; set; }
-    public int Quantite { get; set; }
-    public EtatCommande EtatCommande { get; set; }
-    public Produit Produit { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? Id { get; set; }
+    public string date_creation { get; set; }
+    public int quantite { get; set; }
+    public EtatCommande etat_commande { get; set; }
+    public ProduitDetail produit { get; set; }
 }

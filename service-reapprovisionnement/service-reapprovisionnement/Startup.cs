@@ -46,6 +46,8 @@ namespace service_reapprovisionnement
             services.AddSingleton<WeatherService>();
             services.AddSingleton<FournisseurRepository>();
             services.AddSingleton<FournisseurService>();
+            services.AddSingleton<BonDeCommandeRepository>();
+            services.AddSingleton<BonDeCommandeService>();
             services.AddControllers();
             services.AddOptions();
             services.Configure<ConsulOptions>(Configuration);

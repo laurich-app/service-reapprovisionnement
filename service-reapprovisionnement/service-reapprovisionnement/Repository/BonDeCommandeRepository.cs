@@ -24,19 +24,19 @@ public class BonDeCommandeRepository : IBonDeCommandeRepository
             .ToList();
     }
 
-    public BonDeCommande GetById(int id)
+    public BonDeCommande GetById(string id)
     {
-        return this.bonDeCommande.Find(cmd => cmd.idBonDeCommande == id).SingleOrDefault();
+        return this.bonDeCommande.Find(cmd => cmd.Id == id).SingleOrDefault();
     }
 
-    public void Update(int id, BonDeCommande entity)
+    public void Update(string id, BonDeCommande entity)
     {
-        this.bonDeCommande.ReplaceOne(cmd => cmd.idBonDeCommande == id, entity);
+        this.bonDeCommande.ReplaceOne(cmd => cmd.Id == id, entity);
     }
 
-    public void Delete(int id)
+    public void Delete(string id)
     {
-        this.bonDeCommande.DeleteOne(cmd => cmd.idBonDeCommande == id);
+        this.bonDeCommande.DeleteOne(cmd => cmd.Id == id);
     }
 
     public BonDeCommande Create(BonDeCommande entity)

@@ -6,11 +6,11 @@ public interface IBonDeCommandeRepository
 {
     List<BonDeCommande> GetAll(int page, int pageSize);
     
-    BonDeCommande GetById(int id);
+    BonDeCommande GetById(string id);
     
-    void Update(int id, BonDeCommande entity);
+    void Update(string id, BonDeCommande entity);
     
-    void Delete(int id);
+    void Delete(string id);
 
     BonDeCommande Create(BonDeCommande entity);
     

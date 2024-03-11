@@ -1,0 +1,38 @@
+POST http://localhost:8081/auth/connexion
+Content-Type: application/json
+
+{
+  "email": "root@root.com",
+  "motDePasse": "root"
+}
+
+> {%
+    client.test("Request executed successfuly", function () {
+        client.assert(response.status === 200, "Reponse status is not 200")
+    })
+    if(response.status === 200) {
+        client.global.set("accessToken", response.headers.valueOf("Authorization").slice(7))
+    }
+%}
+
+###
+GET http://localhost:5200/bon_de_commandes
+Authorization: Bearer {{accessToken}}
+
+> {%
+    client.test("Récupérer tous les bons de commandes", function() {
+
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+%}
+
+###
+GET http://localhost:5200/bon_de_commandes/65ef0839694c72852a6c112e
+Authorization: Bearer {{accessToken}}
+
+> {%
+    client.test("Récupérer un bons de commande", function() {
+
+        client.assert(response.status === 404, "Response status is not 404")
+    })
+%}

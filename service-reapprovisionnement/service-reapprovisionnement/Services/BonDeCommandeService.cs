@@ -1,5 +1,6 @@
 using Dtos;
 using Reapprovisionnement.Models;
+using service_reapprovisionnement.Enum;
 using service_reapprovisionnement.Repository;
 using services.Exception;
 
@@ -28,7 +29,7 @@ public class BonDeCommandeService : IBonDeCommandeService
         return p;
     }
 
-    public BonDeCommande GetById(int id)
+    public BonDeCommande GetById(string id)
     {
         return this.bonDeCommandeRepository.GetById(id) ??
                throw new BonDeCommandeNotFoundException("le bon de commande " + id + " n'existe pas dans la base de données");
@@ -39,13 +40,24 @@ public class BonDeCommandeService : IBonDeCommandeService
         return this.bonDeCommandeRepository.Create(entity);
     }
 
-    public void Delete(int id)
+    public void Delete(string id)
     {
         this.bonDeCommandeRepository.Delete(id);
     }
 
-    public void Update(int id, BonDeCommande entity)
+    public void Update(string id, BonDeCommande entity)
     {
         this.bonDeCommandeRepository.Update(id, entity);
+    }
+
+    public BonDeCommande UpdateLivraison(string id, EtatCommande etat)
+    {
+        BonDeCommande bonDeCommande = this.bonDeCommandeRepository.GetById(id);
+        if (bonDeCommande == null)
+            throw new BonDeCommandeNotFoundException();
+
+        bonDeCommande.etat_commande = etat;
+        this.bonDeCommandeRepository.Update(id, bonDeCommande);
+        return bonDeCommande;
     }
 }
