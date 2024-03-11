@@ -1,6 +1,7 @@
 using Dtos;
 using Reapprovisionnement.Models;
 using service_reapprovisionnement.Repository;
+using services.Exception;
 
 namespace services;
 
@@ -29,21 +30,22 @@ public class FournisseurService : IFounisseurService
 
     public Fournisseur GetById(int id)
     {
-        throw new NotImplementedException();
+        return this.fournisseurRepository.GetById(id) ??
+               throw new FournisseurNotFoundException("le fournisseur " + id + " n'existe pas dans la base de données");
     }
 
     public Fournisseur Create(Fournisseur entity)
     {
-        throw new NotImplementedException();
+        return this.fournisseurRepository.Create(entity);
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
-    }
+        this.fournisseurRepository.Delete(id);
+   }
 
     public void Update(int id, Fournisseur entity)
     {
-        throw new NotImplementedException();
+        this.fournisseurRepository.Update(id, entity);
     }
 }
