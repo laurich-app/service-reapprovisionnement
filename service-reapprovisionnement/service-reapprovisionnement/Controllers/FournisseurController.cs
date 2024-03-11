@@ -5,6 +5,7 @@ using services;
 using System.Security.Claims;
 using Securities;
 using Dtos;
+using services.Exception;
 
 namespace service_reapprovisionnement.Controllers;
 [Route("api/fournisseurs")]
@@ -42,13 +43,18 @@ public class FournisseurController: ControllerBase
     
     // GET /api/fournisseurs/{id}
     [HttpGet("{id}")]
-    public IActionResult GetFournisseur(Guid id)
+    public IActionResult GetFournisseur(int id)
     {
         // Logique pour récupérer un fournisseur par son ID
-        // ...
-
-        // Retourne la réponse avec le format spécifié
-        return Ok(new Fournisseur());
+        try
+        {
+            Fournisseur fournisseur = this._fournisseurService.GetById(id);
+            return Ok(fournisseur);
+        }
+        catch (FournisseurNotFoundException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
     
     // POST /api/fournisseurs
@@ -56,21 +62,31 @@ public class FournisseurController: ControllerBase
     public IActionResult AddFournisseur([FromBody] Fournisseur fournisseur)
     {
         // Logique pour ajouter un fournisseur
-        // ...
-
-        // Retourne la réponse avec le format spécifié
-        return CreatedAtAction(nameof(GetFournisseur), new { id = fournisseur.idFournisseur }, fournisseur);
+        try
+        {
+            Fournisseur f = this._fournisseurService.Create(fournisseur);
+            return Ok(f);
+        }
+        catch (FournisseurNotFoundException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
     
     // PUT /api/fournisseurs/{id}
     [HttpPut("{id}")]
-    public IActionResult UpdateFournisseur(Guid id, [FromBody] Fournisseur fournisseur)
+    public IActionResult UpdateFournisseur(int id, [FromBody] Fournisseur fournisseur)
     {
         // Logique pour mettre à jour un fournisseur par son ID
-        // ...
-
-        // Retourne la réponse avec le format spécifié
-        return Ok(fournisseur);
+        try
+        {
+            Fournisseur f = this._fournisseurService.Update(id, fournisseur);
+            return Ok(f);
+        }
+        catch (FournisseurNotFoundException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
     
     // DELETE /api/fournisseurs/{id}
