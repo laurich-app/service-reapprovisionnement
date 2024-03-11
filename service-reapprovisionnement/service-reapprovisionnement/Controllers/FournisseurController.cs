@@ -8,7 +8,7 @@ using Dtos;
 using services.Exception;
 
 namespace service_reapprovisionnement.Controllers;
-[Route("api/fournisseurs")]
+[Route("fournisseurs")]
 [ApiController]
 //[Authorize(Roles = "ROLE_GESTIONNAIRE")]
 //Console.WriteLine(this._claimsHelper.IsGestionaire((ClaimsIdentity)principal.Identity));
@@ -41,9 +41,9 @@ public class FournisseurController: ControllerBase
         return Ok(p);
     }
     
-    // GET /api/fournisseurs/{id}
+    // GET /fournisseurs/{id}
     [HttpGet("{id}")]
-    public IActionResult GetFournisseur(int id)
+    public IActionResult GetFournisseur(string id)
     {
         // Logique pour récupérer un fournisseur par son ID
         try
@@ -57,7 +57,7 @@ public class FournisseurController: ControllerBase
         }
     }
     
-    // POST /api/fournisseurs
+    // POST /fournisseurs
     [HttpPost]
     public IActionResult AddFournisseur([FromBody] Fournisseur fournisseur)
     {
@@ -65,7 +65,8 @@ public class FournisseurController: ControllerBase
         try
         {
             Fournisseur f = this._fournisseurService.Create(fournisseur);
-            return Ok(f);
+            return CreatedAtAction(nameof(GetFournisseur), new { id = f.Id }, f);
+
         }
         catch (FournisseurNotFoundException ex)
         {
@@ -75,7 +76,7 @@ public class FournisseurController: ControllerBase
     
     // PUT /api/fournisseurs/{id}
     [HttpPut("{id}")]
-    public IActionResult UpdateFournisseur(int id, [FromBody] Fournisseur fournisseur)
+    public IActionResult UpdateFournisseur(string id, [FromBody] FournisseurUpdate fournisseur)
     {
         // Logique pour mettre à jour un fournisseur par son ID
         try
@@ -91,26 +92,76 @@ public class FournisseurController: ControllerBase
     
     // DELETE /api/fournisseurs/{id}
     [HttpDelete("{id}")]
-    public IActionResult DeleteFournisseur(Guid id)
+    public IActionResult DeleteFournisseur(string id)
     {
         // Logique pour supprimer un fournisseur par son ID
-        // ...
+        this._fournisseurService.Delete(id);
 
         // Retourne la réponse avec le code 204 (No Content)
         return NoContent();
     }
     
-    // POST /api/fournisseurs/{id}/produits
+    // POST /fournisseurs/{id}/produits
     [HttpPost("{id}/produits")]
-    public IActionResult AddProduitToFournisseur(Guid id, [FromBody] Produit produit)
+    public IActionResult AddProduitToFournisseur([FromRoute] string id, [FromBody] Produit produit)
+    {
+        try
+        {
+            // Logique pour ajouter un produit à un fournisseur par son ID
+            Produit p = this._fournisseurService.AddProduit(id, produit);
+
+            // Retourne la réponse avec le format spécifié
+            return CreatedAtAction(nameof(GetFournisseur), new { id }, p);
+        }
+        catch (FournisseurNotFoundException p)
+        {
+            return NotFound(p.Message);
+        }
+        catch (ProduitAlreadyExistException p)
+        {
+            return Conflict(p.Message);
+        }
+    }
+    
+    // PUT /fournisseurs/{id}/produits/{catalogueId}
+    [HttpPut("{id}/produits/{catalogueId}")]
+    public IActionResult UpdProduitToFournisseur([FromRoute] string id, int catalogueId, [FromBody] ProduitUpd produit)
+    {
+        try
+        {
+            // Logique pour ajouter un produit à un fournisseur par son ID
+            Produit p = this._fournisseurService.UpdProduit(id, catalogueId, produit);
+
+            // Retourne la réponse avec le format spécifié
+            return Ok(p);
+        }
+        catch (ProduitNotFoundException p)
+        {
+            return NotFound(p.Message);
+        }
+        catch (FournisseurNotFoundException p)
+        {
+            return NotFound(p.Message);
+        }
+    }
+    
+    // DELETE /fournisseurs/{id}/produits/{catalogueId}
+    [HttpDelete("{id}/produits/{catalogueId}")]
+    public IActionResult DeleteProduitToFournisseur([FromRoute] string id, int catalogueId)
     {
         // Logique pour ajouter un produit à un fournisseur par son ID
-        // ...
-
-        // Retourne la réponse avec le format spécifié
-        //return CreatedAtAction(nameof(GetProduit), new { fournisseurId = id, produitId = produit.IdProduitCatalogue }, produit);
-        return null;
-    }
-
-    // ... Ajouter d'autres endpoints pour les opérations liées aux produits
+        try
+        {
+            this._fournisseurService.DeleteProduit(id, catalogueId);
+            return NoContent();
+        }
+        catch (ProduitNotFoundException p)
+        {
+            return NotFound(p.Message);
+        }
+        catch (FournisseurNotFoundException p)
+        {
+            return NotFound(p.Message);
+        }
+    }  
 }

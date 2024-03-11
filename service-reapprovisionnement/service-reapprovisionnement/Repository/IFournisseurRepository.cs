@@ -6,13 +6,13 @@ public interface IFournisseurRepository
 {
     List<Fournisseur> GetAll(int page, int pageSize);
 
-    Fournisseur GetById(int id);
+    Fournisseur GetById(string id);
 
     Fournisseur Create(Fournisseur entity);
 
-    void Delete(int id);
+    void Delete(string id);
 
-    void Update(int id, Fournisseur entity);
+    void Update(string id, Fournisseur entity);
 
     int GetTotalFournisseurs();
 }

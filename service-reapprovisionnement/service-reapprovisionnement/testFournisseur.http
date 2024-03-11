@@ -1,2 +1,228 @@
-GET http://localhost:5200/api/fournisseurs
+GET http://localhost:5200/fournisseurs
 
+> {% 
+ client.test("Récupérer tous les fournisseurs", function() {
+
+     client.assert(response.status === 200, "Response status is not 200")
+ })
+%}
+
+###
+
+POST http://localhost:5200/fournisseurs
+Content-Type: application/json
+
+{
+  "email": "fournisseur@gmail.com",
+  "raison_sociale": "Raison Sociale"
+}
+
+> {% 
+ client.test("Produit ajouté", function() {
+     
+     client.assert(response.status === 201, "Response status is not 201")
+ })
+%}
+
+###
+POST http://localhost:5200/fournisseurs
+Content-Type: application/json
+
+{
+  "email": "fournisseur@gmail.com",
+  "raison_sociale": "Raison Sociale",
+  "produits": [
+    {
+      "prix_unitaire_fournisseur": 21.4,
+      "id_produit_catalogue": 1
+    }
+  ]
+}
+
+> {% 
+ client.test("Produit ajouté avec produits", function() {
+     client.assert(response.status === 201, "Response status is not 201")
+ })
+ %}
+
+###
+POST http://localhost:5200/fournisseurs
+Content-Type: application/json
+
+{
+  "email": "fournisseur@gmail.com"
+}
+
+> {%
+    client.test("Produit ajouté sans raison sociale", function() {
+
+        client.assert(response.status === 400, "Response status is not 400")
+    })
+%}
+
+###
+POST http://localhost:5200/fournisseurs
+Content-Type: application/json
+
+{
+  "raison_sociale": "Fournisseur de bruxelle"
+}
+
+> {%
+    client.test("Produit ajouté sans email", function() {
+
+        client.assert(response.status === 400, "Response status is not 400")
+    })
+%}
+
+###
+GET http://localhost:5200/fournisseurs
+
+> {%
+    client.test("Récupérer tous les fournisseurs", function() {
+        client.global.set("id_fournisseur", response.body.data[0].id)
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+%}
+
+###
+GET http://localhost:5200/fournisseurs/{{id_fournisseur}}
+
+> {%
+    client.test("Récupérer un fournisseur", function() {
+
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+%}
+
+###
+PUT http://localhost:5200/fournisseurs/{{id_fournisseur}}
+Content-Type: application/json
+
+{
+  "email": "fournisseur2@gmail.com"
+}
+
+> {%
+    client.test("Fournisseur modifié", function() {
+        client.assert(response.body.email == "fournisseur2@gmail.com", "L'email n'a pas été modifié")
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+%}
+
+###
+PUT http://localhost:5200/fournisseurs/{{id_fournisseur}}
+Content-Type: application/json
+
+{
+  "produits": []
+}
+
+> {%
+    client.test("Fournisseur modifié", function() {
+        client.assert(response.body.produits.length == 0, "Les produits n'a pas été modifié")
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+%}
+
+###
+DELETE http://localhost:5200/fournisseurs/{{id_fournisseur}}
+Content-Type: application/json
+
+> {%
+    client.test("Fournisseur supprimé", function() {
+        client.assert(response.status === 204, "Response status is not 204")
+    })
+%}
+
+###
+GET http://localhost:5200/fournisseurs/{{id_fournisseur}}
+
+> {%
+    client.test("Récupérer un fournisseur", function() {
+
+        client.assert(response.status === 400, "Response status is not 400")
+    })
+%}
+
+###
+POST http://localhost:5200/fournisseurs
+Content-Type: application/json
+
+{
+  "email": "fournisseur@gmail.com",
+  "raison_sociale": "Raison Sociale",
+  "produits": [
+    {
+      "prix_unitaire_fournisseur": 21.4,
+      "id_produit_catalogue": 1
+    }
+  ]
+}
+
+> {%
+    client.test("Produit ajouté avec produits", function() {
+        client.global.set("id_fournisseur", response.body.id)
+        client.assert(response.status === 201, "Response status is not 201")
+    })
+%}
+
+###
+POST http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits
+Content-Type: application/json
+
+{
+  "prix_unitaire_fournisseur": 15,
+  "id_produit_catalogue": 2
+}
+
+> {%
+    client.test("Produit ajouté dans Fournisseur", function() {
+        client.assert(response.status === 201, "Response status is not 201")
+    })
+%}
+
+###
+POST http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits
+Content-Type: application/json
+
+{
+  "prix_unitaire_fournisseur": 15,
+  "id_produit_catalogue": 2
+}
+
+> {%
+    client.test("Le produit existe déjà pour ce fournisseur", function() {
+        client.assert(response.status === 409, "Response status is not 409")
+    })
+%}
+
+###
+PUT http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits/2
+Content-Type: application/json
+
+{
+  "prix_unitaire_fournisseur": 12
+}
+
+> {%
+    client.test("Produit modifié dans Fournisseur", function() {
+        client.assert(response.body.prix_unitaire_fournisseur == 12, "Le prix n'a pas été modifié")
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+%}
+
+###
+DELETE http://localhost:5200/fournisseurs/{{id_fournisseur}}/produits/2
+Content-Type: application/json
+
+{
+  "prix_unitaire_fournisseur": 12,
+  "id_produit_catalogue": 2
+}
+
+> {%
+    client.test("Produit supprimé dans Fournisseur", function() {
+        client.assert(response.status === 204, "Response status is not 204")
+    })
+%}

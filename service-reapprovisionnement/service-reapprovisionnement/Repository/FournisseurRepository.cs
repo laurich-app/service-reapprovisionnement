@@ -20,9 +20,9 @@ public class FournisseurRepository : IFournisseurRepository
         return entity;
     }
     
-    public void Delete(int id)
+    public void Delete(string id)
     {
-        this.fournisseur.DeleteOne(cmd => cmd.idFournisseur == id);
+        this.fournisseur.DeleteOne(cmd => cmd.Id == id);
     }
     
     public List<Fournisseur> GetAll(int page, int pageSize)
@@ -35,14 +35,14 @@ public class FournisseurRepository : IFournisseurRepository
             .ToList();
     }
 
-    public Fournisseur GetById(int id)
+    public Fournisseur GetById(string id)
     {
-        return this.fournisseur.Find(cmd => cmd.idFournisseur == id).SingleOrDefault();
+        return this.fournisseur.Find(cmd => cmd.Id == id).SingleOrDefault();
     }
     
-    public void Update(int id, Fournisseur entity)
+    public void Update(string id, Fournisseur entity)
     {
-        this.fournisseur.ReplaceOne(cmd => cmd.idFournisseur == id, entity);
+        this.fournisseur.ReplaceOne(cmd => cmd.Id == id, entity);
     }
 
     public int GetTotalFournisseurs()
