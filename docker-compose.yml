@@ -5,7 +5,7 @@ services:
     volumes:
       - ./service-reapprovisionnement/:/app/
     ports:
-      - 6500:5000
+      - 6500:5200
       - 5001:5001
     tty: true
     stdin_open: true
