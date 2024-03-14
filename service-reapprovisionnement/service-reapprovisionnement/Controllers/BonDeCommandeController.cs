@@ -68,19 +68,23 @@ public class BonDeCommandeController :  ControllerBase
     
     // GET /fournisseurs/{id}
     [HttpPut("{id}/etat")]
-    public IActionResult UpdBonDeCommandeEtat(string id, [FromBody] EtatCommande etat)
+    public IActionResult UpdBonDeCommandeEtat(string id, [FromBody] BonDeCommandeEtatDTO dto)
     {
         if (!this.Authentifier())
             return Unauthorized();
         // Logique pour récupérer un fournisseur par son ID
         try
         {
-            BonDeCommande bonDeCommande = this._bonDeCommandeService.UpdateLivraison(id, etat);
+            BonDeCommande bonDeCommande = this._bonDeCommandeService.UpdateLivraison(id, dto.etat);
             return Ok(bonDeCommande);
         }
         catch (BonDeCommandeNotFoundException ex)
         {
             return NotFound(ex.Message);
+        }
+        catch (DejaLivrerEtatInchangeableException ex)
+        {
+            return BadRequest(ex.Message);
         }
     }
 }

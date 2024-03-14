@@ -48,8 +48,8 @@ public class ConsulService : IDisposable
 						{
 								Console.WriteLine("Failed to register service.");
 						}
-				}
-    }
+				}			
+			}
 
 		// Implémentation de la méthode Dispose de l'interface IDisposable
     public void Dispose()
