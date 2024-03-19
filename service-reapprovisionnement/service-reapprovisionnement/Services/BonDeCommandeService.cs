@@ -15,6 +15,8 @@ public class BonDeCommandeService : IBonDeCommandeService
         this.bonDeCommandeRepository = bonDeCommandeRepository;
     }
     
+    public BonDeCommandeService() { }
+    
     public Pagination<BonDeCommande> GetAll(int page, int pageSize)
     {
         Paginated pItem = new Paginated(

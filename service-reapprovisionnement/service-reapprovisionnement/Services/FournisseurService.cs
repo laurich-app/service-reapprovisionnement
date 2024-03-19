@@ -5,7 +5,7 @@ using services.Exception;
 
 namespace services;
 
-public class FournisseurService : IFounisseurService
+public class FournisseurService : IFournisseurService
 {
     private readonly IFournisseurRepository fournisseurRepository;
 

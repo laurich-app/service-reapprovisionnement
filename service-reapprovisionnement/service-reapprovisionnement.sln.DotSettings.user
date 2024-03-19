@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/soumiadelmi/Library/Caches/JetBrains/Rider2023.3/resharper-host/temp/Rider/vAny/CoverageData/_service-reapprovisionnement.1945330189/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=06ca5dd3_002D8dd8_002D4360_002Db2bb_002D243c13190ecc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetFournisseurs_WhenUserIsNotAuthenticated_ReturnsUnauthorized" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;ProjectFolder&gt;F3A28FB6-8A56-4F45-A2C0-D4EBDB89238C/d:test&lt;/ProjectFolder&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3c321fd2_002Df8f5_002D4671_002Dac45_002D9ebe530fcc66/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;And&gt;
+    &lt;Namespace&gt;service_reapprovisionnement.test&lt;/Namespace&gt;
+    &lt;Project Location="/Users/soumiadelmi/Library/CloudStorage/OneDrive-Personnel/Documents/M2 MIAGE/S2/Interop/service-reapprovisionnement/service-reapprovisionnement/service-reapprovisionnement" Presentation="&amp;lt;service-reapprovisionnement&amp;gt;" /&gt;
+  &lt;/And&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

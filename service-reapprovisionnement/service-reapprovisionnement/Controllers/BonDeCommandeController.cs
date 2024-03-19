@@ -16,7 +16,7 @@ public class BonDeCommandeController :  ControllerBase
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ClaimsHelper _claimsHelper;
 
-    private readonly BonDeCommandeService _bonDeCommandeService;
+    private readonly IBonDeCommandeService _bonDeCommandeService;
 
     private readonly ILogger<BonDeCommandeController> _logger;
 
@@ -26,7 +26,7 @@ public class BonDeCommandeController :  ControllerBase
         return this._claimsHelper.IsGestionaire((ClaimsIdentity)principal.Identity);
     }
 
-    public BonDeCommandeController(ILogger<BonDeCommandeController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, BonDeCommandeService bonDeCommandeService)
+    public BonDeCommandeController(ILogger<BonDeCommandeController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, IBonDeCommandeService bonDeCommandeService)
     {
         _logger = logger;
         _httpContextAccessor = httpContextAccessor;

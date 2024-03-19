@@ -3,7 +3,7 @@ using Reapprovisionnement.Models;
 
 namespace services;
 
-public interface IFounisseurService
+public interface IFournisseurService
 {
     Pagination<Fournisseur> GetAll(int page, int pageSize);
 

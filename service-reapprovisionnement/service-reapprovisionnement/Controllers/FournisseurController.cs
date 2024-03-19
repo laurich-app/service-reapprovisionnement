@@ -18,7 +18,7 @@ public class FournisseurController: ControllerBase
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ClaimsHelper _claimsHelper;
 
-    private readonly FournisseurService _fournisseurService;
+    private readonly IFournisseurService _fournisseurService;
 
     private readonly ILogger<FournisseurController> _logger;
 
@@ -28,7 +28,7 @@ public class FournisseurController: ControllerBase
         return this._claimsHelper.IsGestionaire((ClaimsIdentity)principal.Identity);
     }
 
-    public FournisseurController(ILogger<FournisseurController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, FournisseurService fournisseurService)
+    public FournisseurController(ILogger<FournisseurController> logger, IHttpContextAccessor httpContextAccessor, ClaimsHelper claimsHelper, IFournisseurService fournisseurService)
     {
         _logger = logger;
         _httpContextAccessor = httpContextAccessor;
