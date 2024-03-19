@@ -129,7 +129,10 @@ public class TestBonDeCommandeController
             // Arrange
             _claims = new List<Claim>();
             // Act
-            var result = _controller.UpdBonDeCommandeEtat("123", new EtatCommande());
+            //var result = _controller.UpdBonDeCommandeEtat("123", new EtatCommande());
+            BonDeCommandeEtatDTO b = new BonDeCommandeEtatDTO();
+            b.etat = EtatCommande.LIVRER;
+            var result = _controller.UpdBonDeCommandeEtat("123", b);
 
             // Assert
             //Assert.IsInstanceOf<UnauthorizedResult>(result);
@@ -143,7 +146,10 @@ public class TestBonDeCommandeController
             _bonDeCommandeServiceMock.Setup(s => s.UpdateLivraison(It.IsAny<string>(), It.IsAny<EtatCommande>())).Returns(new BonDeCommande());
 
             // Act
-            var result = _controller.UpdBonDeCommandeEtat("123", new EtatCommande());
+            //var result = _controller.UpdBonDeCommandeEtat("123", new EtatCommande());
+            BonDeCommandeEtatDTO b = new BonDeCommandeEtatDTO();
+            b.etat = EtatCommande.LIVRER;
+            var result = _controller.UpdBonDeCommandeEtat("123", b);
 
             // Assert
            //Assert.IsInstanceOf<OkObjectResult>(result);
@@ -157,7 +163,9 @@ public class TestBonDeCommandeController
             _bonDeCommandeServiceMock.Setup(s => s.UpdateLivraison(It.IsAny<string>(), It.IsAny<EtatCommande>())).Throws<BonDeCommandeNotFoundException>();
 
             // Act
-            var result = _controller.UpdBonDeCommandeEtat("123", new EtatCommande());
+            BonDeCommandeEtatDTO b = new BonDeCommandeEtatDTO();
+            b.etat = EtatCommande.LIVRER;
+            var result = _controller.UpdBonDeCommandeEtat("123", b);
 
             // Assert
             //Assert.IsInstanceOf<NotFoundObjectResult>(result);
