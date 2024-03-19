@@ -1,6 +1,7 @@
 using Dtos;
 using Reapprovisionnement.Models;
 using service_reapprovisionnement.Enum;
+using Dtos.Rabbits;
 
 namespace services;
 
@@ -17,4 +18,8 @@ public interface IBonDeCommandeService
     void Update(string id, BonDeCommande entity);
 
     BonDeCommande UpdateLivraison(string id, EtatCommande etatCommande);
+
+    void SupprimerCommande(int id_produit, string couleur);
+
+    void StockReapproDemande(ProduitCatalogueManquantDTO produit);
 }

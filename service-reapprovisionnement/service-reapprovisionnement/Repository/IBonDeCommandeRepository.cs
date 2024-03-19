@@ -15,4 +15,7 @@ public interface IBonDeCommandeRepository
     BonDeCommande Create(BonDeCommande entity);
     
     int GetTotalBonDeCommande();
+
+    Task SupprimerBonsDeCommandeEnCoursAvecProduit(int idProduit, string couleur);
+
 }

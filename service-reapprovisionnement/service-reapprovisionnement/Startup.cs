@@ -28,6 +28,11 @@ using Dtos;
 using Extensions;
 using service_reapprovisionnement.Repository;
 
+
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
+
 namespace service_reapprovisionnement
 {
     public class Startup
@@ -42,6 +47,8 @@ namespace service_reapprovisionnement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<RabbitListener>();
+            services.AddSingleton<RabbitMQProducerService>();
             services.AddSingleton<DatabaseService>();
             services.AddSingleton<WeatherService>();
             services.AddSingleton<FournisseurRepository>();

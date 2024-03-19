@@ -22,8 +22,14 @@ public class ConsulService : IDisposable
 				{
 						ID = Guid.NewGuid().ToString(), // Unique ID for the service
 						Name = "reapprovisionnement",
-						Port = 5000,
-						Address = Dns.GetHostName()
+						Port = 5200,
+						Address = Dns.GetHostName(),
+						Check = new AgentServiceCheck()
+						{
+								HTTP = "http://" + Dns.GetHostName() + ":5200/health", // URL pour vérifier la santé du service
+								Interval = TimeSpan.FromSeconds(10),    // Vérification de la santé toutes les 10 secondes
+								Timeout = TimeSpan.FromSeconds(5),     // Délai d'attente de 5 secondes pour chaque vérification
+						}
 				};
 
 				using (var client = new ConsulClient(opt => {
@@ -42,8 +48,8 @@ public class ConsulService : IDisposable
 						{
 								Console.WriteLine("Failed to register service.");
 						}
-				}
-    }
+				}			
+			}
 
 		// Implémentation de la méthode Dispose de l'interface IDisposable
     public void Dispose()

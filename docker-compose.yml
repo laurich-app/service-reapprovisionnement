@@ -5,7 +5,7 @@ services:
     volumes:
       - ./service-reapprovisionnement/:/app/
     ports:
-      - 6500:5000
+      - 6500:5200
       - 5001:5001
     tty: true
     stdin_open: true
@@ -14,6 +14,7 @@ services:
       - CONSUL_PORT=8500
       - MONGO_URL=mongodb://user:pswd@mongo-reappro:27017/
       - MONGO_DATABASE=reappro
+      - RABBIT_HOST=rabbit
 
   discovery:
     image: consul:1.15
@@ -27,8 +28,6 @@ services:
 
   postgres:
     image: postgres:12.17
-    ports:
-      - 5432:5432
     environment:
       - POSTGRES_DB=service-utilisateur
       - POSTGRES_USER=user
@@ -51,15 +50,6 @@ services:
       - serveur-conf
       - discovery
 
-  service-passerelle:
-    image: ghcr.io/laurich-app/service-passerelle:latest
-    ports:
-      - 8080:8080
-    environment:
-      - CLIENT_URL=http://client
-      - CONSUL_HOST=discovery
-      - CONSUL_PORT=8500
-
   mongo-reappro:
     image: mongo:7.0.5
     ports:
@@ -80,3 +70,18 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: admin
       ME_CONFIG_MONGODB_SERVER: mongo-reappro
       ME_CONFIG_MONGODB_ENABLE_ADMIN: true
+
+  postgres-catalogue:
+    image: postgres:12.17
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=service-catalogue
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pswd
+
+  rabbit:
+    image: rabbitmq:3.12.13-management
+    ports:
+      - 15672:15672
+      - 5672:5672
