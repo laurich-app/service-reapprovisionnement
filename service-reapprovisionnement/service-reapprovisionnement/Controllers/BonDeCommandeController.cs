@@ -9,7 +9,7 @@ using service_reapprovisionnement.Enum;
 using services.Exception;
 
 namespace service_reapprovisionnement.Controllers;
-[Route("bon_de_commandes")]
+[Route("boncommandes")]
 [ApiController]
 public class BonDeCommandeController :  ControllerBase
 {
