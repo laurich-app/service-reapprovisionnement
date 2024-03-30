@@ -16,7 +16,7 @@ Content-Type: application/json
 %}
 
 ###
-GET http://localhost:5200/bon_de_commandes
+GET http://localhost:6500/boncommandes
 Authorization: Bearer {{accessToken}}
 
 > {%
@@ -27,7 +27,7 @@ Authorization: Bearer {{accessToken}}
 %}
 
 ###
-GET http://localhost:5200/bon_de_commandes/65ef0839694c72852a6c112e
+GET http://localhost:6500/boncommandes/65ef0839694c72852a6c112e
 Authorization: Bearer {{accessToken}}
 
 > {%
